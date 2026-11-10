@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hello, World!</title>
+<meta name="description" content="一行代码，一份标本。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23171A1F'/%3E%3Ctext x='16' y='23' font-family='Consolas,monospace' font-size='20' font-weight='700' fill='%23EEF0EC' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --paper:#EEF0EC;
+    --ink:#171A1F;
+    --muted:#6C7369;
+    --hair:#C8CCC4;
+    --accent:#B5432A;
+    --mono:"Cascadia Code","Consolas","SFMono-Regular",ui-monospace,monospace;
+    --serif:"Constantia","Cambria","Songti SC",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    min-height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:clamp(20px,5vw,64px);
+  }
+  .plate{
+    width:100%;
+    max-width:960px;
+    position:relative;
+  }
+  .meta{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.01em;
+    color:var(--muted);
+    padding-bottom:10px;
+    border-bottom:1px solid var(--hair);
+  }
+  .greeting{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(44px,11.5vw,124px);
+    line-height:1.02;
+    letter-spacing:-.03em;
+    margin:clamp(28px,6vw,64px) 0 clamp(22px,5vw,48px);
+    display:block;
+    word-break:break-word;
+  }
+  .glyph{opacity:1}
+  .reveal .glyph{opacity:0}
+  .caret{
+    display:inline-block;
+    width:.42em;
+    height:.86em;
+    background:var(--accent);
+    vertical-align:-.06em;
+    margin-left:.06em;
+    animation:blink 1.6s steps(1,end) infinite;
+  }
+  @keyframes blink{0%,48%{opacity:1}49%,100%{opacity:0}}
+  .body{
+    border-top:1px solid var(--hair);
+    padding-top:clamp(18px,3vw,30px);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(18px,4vw,40px);
+  }
+  .note{
+    margin:0;
+    font-size:16px;
+    line-height:1.72;
+    color:#3A403A;
+    max-width:34em;
+  }
+  .note strong{font-weight:700;color:var(--ink)}
+  .code{
+    background:#E5E7E2;
+    border:1px solid var(--hair);
+    padding:16px 18px;
+    font-family:var(--mono);
+    font-size:13.5px;
+    line-height:1.9;
+    color:#2A302A;
+    white-space:pre;
+    overflow-x:auto;
+    margin:0;
+  }
+  .code .k{color:var(--accent)}
+  .foot{
+    margin-top:clamp(22px,4vw,40px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .copy{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--ink);
+    background:transparent;
+    border:1px solid var(--ink);
+    padding:11px 18px;
+    min-height:44px;
+    cursor:pointer;
+    transition:background .18s ease,color .18s ease;
+  }
+  .copy:hover,.copy:focus-visible{background:var(--ink);color:var(--paper)}
+  .copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .stamp{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:26px;
+    transform:translate(-50%,14px);
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--mono);
+    font-size:13px;
+    padding:11px 20px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease,transform .2s ease;
+  }
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  @media (min-width:768px){
+    .body{grid-template-columns:1.35fr 1fr;align-items:start}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal .glyph{opacity:1}
+    .caret{animation:none}
+    .toast{transition:none}
+  }
+</style>
+</head>
+<body>
+<!-- ===== 标本版式 ===== -->
+<main class="plate">
+  <div class="meta">
+    <span>第一条输出 / 一九七八</span>
+    <span>the c programming language</span>
+  </div>
+
+  <span class="greeting" id="greeting" aria-label="Hello, World!"><span class="glyph">H</span><span class="glyph">e</span><span class="glyph">l</span><span class="glyph">l</span><span class="glyph">o</span><span class="glyph">,</span><span class="glyph"> </span><span class="glyph">W</span><span class="glyph">o</span><span class="glyph">r</span><span class="glyph">l</span><span class="glyph">d</span><span class="glyph">!</span><span class="caret" id="caret" aria-hidden="true"></span></span>
+
+  <div class="body">
+    <p class="note">
+      每个写程序的人都在终端里见过这一行。它不解决问题，只证明一件事：<strong>代码跑到这里了，世界收到了。</strong>
+      下面的三行是它的原始写法，从 1978 年沿用至今，几乎一字未改。
+    </p>
+    <pre class="code" id="snippet">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf(<span class="k">"Hello, World!\n"</span>);
+    return 0;
+}</pre>
+  </div>
+
+  <div class="foot">
+    <button class="copy" id="copyBtn" type="button">复制这段源码</button>
+    <span class="stamp">托管于 GitHub Pages</span>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite">已复制到剪贴板</div>
+
+<script>
+(function () {
+  var greeting = document.getElementById('greeting');
+  var glyphs = Array.prototype.slice.call(greeting.querySelectorAll('.glyph'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduce) {
+    greeting.classList.add('reveal');
+    glyphs.forEach(function (g, i) {
+      setTimeout(function () { g.style.opacity = '1'; }, 120 + i * 55);
+    });
+  }
+
+  var snippet = '#include <stdio.h>\n\nint main(void)\n{\n    printf("Hello, World!\\n");\n    return 0;\n}';
+  var btn = document.getElementById('copyBtn');
+  var toast = document.getElementById('toast');
+  var timer = null;
+
+  function flash(text) {
+    toast.textContent = text;
+    toast.classList.add('on');
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.classList.remove('on'); }, 1800);
+  }
+
+  btn.addEventListener('click', function () {
+    function ok() { flash('已复制到剪贴板'); }
+    function fail() { flash('复制失败，请手动选中源码'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(snippet).then(ok, fail);
+      return;
+    }
+    var ta = document.createElement('textarea');
+    ta.value = snippet;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy') ? ok() : fail(); } catch (e) { fail(); }
+    document.body.removeChild(ta);
+  });
+})();
+</script>
+</body>
+</html>
